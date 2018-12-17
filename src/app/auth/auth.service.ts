@@ -45,8 +45,4 @@ export class AuthService {
     firebase.auth().signOut();
     this.store.dispatch(new AuthActions.Logout());
   }
-
-  isAuthenticated() {
-    return this.token != null;
-  }
 }
