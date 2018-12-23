@@ -5,6 +5,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import * as RecipeActions from '../store/recipe.actions';
 import * as fromRecipe from '../store/recipe.reducers';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -78,7 +79,7 @@ export class RecipeEditComponent implements OnInit {
     if (this.editMode) {
       this.store
         .select('recipes')
-        .take(1)
+        .pipe(take(1))
         .subscribe((recipeState: fromRecipe.State) => {
           const recipe = recipeState.recipes[this.id];
           recipeName = recipe.name;
